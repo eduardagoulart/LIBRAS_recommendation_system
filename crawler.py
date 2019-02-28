@@ -12,6 +12,7 @@ def search_element():
     elem.clear()
     elem.send_keys("turma da monica libras")
     elem.send_keys(Keys.RETURN)
+    video = driver.find_element_by_id('video-title').click()
     assert "No results found." not in driver.page_source
 
 
@@ -58,8 +59,8 @@ def scroll_down(url):
 
 def saving_html():
     file = open('html.txt', 'w')
-    file.write(scroll_down('https://www.youtube.com/watch?v=RxWEvV9zYj4'))
+    file.write(scroll_down('https://www.youtube.com/watch?v=WDHFOT_XNRE'))
 
 
 # saving_html()
-search_element()
+#saving_html()
