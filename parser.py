@@ -1,15 +1,25 @@
-from html.parser import HTMLParser
-from crawler import scroll_down
-import json
+from bs4 import BeautifulSoup
+import re
 
 
-class MyHTMLParser(HTMLParser):
-    def handle_data(self, data):
-        print("Encountered some data  :", data)
-        # print(type(data))
+def parser_html(html):
+    soup = BeautifulSoup(html, 'html.parser')
+    title = soup.title.string
+    info = {'title': title}
+    hyper_link = soup.find_all('div')
+    div = BeautifulSoup(html, 'html.parser')
+    for i in range(len(hyper_link)):
+        t = div.string
+        # print(t)
+    # print(hyper_link)
+    info['hyper_link'] = hyper_link
+    # a = soup.get_text()
+    return title
 
 
-parser = MyHTMLParser()
-parser.feed(scroll_down('https://www.youtube.com/watch?v=WDHFOT_XNRE'))
-
-# json_data = json.dumps(str(data))
+def parser(html):
+    clean = re.compile('<.*?>')
+    clean_test = re.sub(clean, '', html)
+    x = re.search("likes$", clean_test)
+    print(x)
+    return clean_test

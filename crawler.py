@@ -1,5 +1,8 @@
 import re
 import time
+import parser
+import json
+import pprint
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
@@ -12,7 +15,7 @@ def search_element():
     elem.clear()
     elem.send_keys("turma da monica libras")
     elem.send_keys(Keys.RETURN)
-    video = driver.find_element_by_id('video-title').click()
+    # video = driver.find_element_by_id('video-title').click()
     assert "No results found." not in driver.page_source
 
 
@@ -54,13 +57,23 @@ def scroll_down(url):
             html = driver.page_source
             break
         last_height = new_height
+        html = parser.parser(html)
+        # pp = pprint.PrettyPrinter(width=41, compact=True)
+        # pp.pprint(html)
+        # saving_json(html)
         return html
 
 
 def saving_html():
-    file = open('html.txt', 'w')
+    file = open('html2.txt', 'w')
     file.write(scroll_down('https://www.youtube.com/watch?v=WDHFOT_XNRE'))
 
 
+def saving_json(data):
+    with open("teste.json", "w") as write_file:
+        json.dump(data, write_file)
+
+
 # saving_html()
-#saving_html()
+scroll_down('https://www.youtube.com/watch?v=WDHFOT_XNRE')
+# search_element()
