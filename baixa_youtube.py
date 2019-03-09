@@ -1,5 +1,6 @@
 import re
 from selenium import webdriver
+import json
 
 
 def baixa_le_navegador(url, driver):
@@ -45,44 +46,26 @@ def string_and_data(html, token_pesquisa, token_parada):
     intervalo_inicio = [(a.end()) for a in list(re.finditer(token_pesquisa, html))]
     p_break = [(a.start()) for a in list(re.finditer(token_parada, html))]
 
-    inicio = []
     fim = []
-    print(p_break[0])
-    print(intervalo_inicio[0])
+
     for a in range(len(list(re.finditer(token_pesquisa, html)))):
-        if p_break[a] < intervalo_inicio[a]:
-            inicio.append(intervalo_inicio[a])
-            fim.append(p_break[a])
-        else:
-            while p_break[a] > intervalo_inicio[a]:
-                a += 1
-                p_break[a] = intervalo_inicio[a]
+        for j in p_break:
+            if j > intervalo_inicio[a]:
+                p_break[a] = j
+                fim.append(j)
+                break
 
     lista_info = []
-    for i in range(len(inicio)):
+    for i in range(len(intervalo_inicio)):
         info = ''
-        while inicio[i] < fim[i]:
+        while True:
             info += html[intervalo_inicio[i]]
-            fim[i] += 1
-            if inicio[i] <= fim[i]:
+            intervalo_inicio[i] += 1
+            if intervalo_inicio[i] > fim[i]:
                 lista_info.append(info)
                 break
-            # print(info)
-    print(lista_info)
 
-
-    '''
-    intervalo_inicio = intervalo_inicio[0]
-    for i in p_break:
-        if i > intervalo_inicio:  # no primeiro ponto que a posição de pBreak for maior que p eu assumo aquele valor como valor de break do while que vai estar lá em baixo
-            p_break = i
-            break
-    info = ''
-    while intervalo_inicio < p_break:
-        info = info + html[intervalo_inicio]
-        intervalo_inicio = intervalo_inicio + 1
-
-    # return info'''
+    return lista_info
 
 
 def return_informations():
@@ -100,13 +83,8 @@ def return_informations():
     print(f'Autor: {author}')
     view = parser(html_baixado, 'viewCount":"', '",', True)
     print(f'Visualizações: {view}')
-    month_published = parser(html_baixado, '"Published on ', ' ', False)
-    print(f'Data da publicação: {month_published}')
-    aux = '"Published on ' + month_published
-    print(aux)
-    day_published = parser(html_baixado, aux, ',', True)
-    print(f"Day and year {day_published}")
-    nome_video = parser(html_baixado, 'title":"', '",', False)
+
+    nome_video = parser(html_baixado, 'title":"', '","', False)
     print("Nome do Vídeo ", nome_video)
 
     description = parser(html_baixado, '"shortDescription":"', '","isCrawlable"', False)
@@ -120,10 +98,42 @@ def return_informations():
     query = parser(html_baixado, '"searchEndpoint":{"query":"', '"}}', False)
     print(f'Query: {query}')
 
-    continue_assistindo = string_and_data(html_baixado, '"title":{"accessibility":{"accessibilityData":{"label":"',
-                                          '"}},"simpleText":"')
-    # print(f'Continue assistindo: {continue_assistindo}')
-
+    s = string_and_data(html_baixado, '"title":{"accessibility":{"accessibilityData":{"label":"', '"}},"simpleText":"')
+    dados = {'nome do vídeo': nome_video,
+             'autor': author,
+             'likes': numero_likes[0],
+             'deslikes': numero_likes[1],
+             'visualização': view,
+             'descrição do vídeo': description,
+             'data de publicação': published,
+             'url do canal': browser_id,
+             'query': query,
+             'recomendados pelo youtube': s
+             }
+    f = open("arquivo.txt", 'w', encoding="utf-8")
+    nome_video += ": nome do vídeo"
+    f.write(nome_video)
+    author += ": autor"
+    f.write(author)
+    numero_likes[0] += ": número de likes"
+    f.write(numero_likes[0])
+    numero_likes[1] += ": número de dislikes"
+    f.write(numero_likes[1])
+    view += 'número de visualizações'
+    f.write(view)
+    description += ': descrição do vídeo'
+    f.write(description)
+    published += ": data de publicação"
+    f.write(published)
+    browser_id += 'url do canal'
+    f.write(browser_id)
+    f.write(query)
+    f.write("Vídeos recomendados a seguir pelo Youtube")
+    for i in s:
+        f.write(i)
+    # f.write(s)
+    with open('dados.txt', 'w', encoding="utf-8") as file:
+        json.dump(dados, file)
     driver.close()
 
 
