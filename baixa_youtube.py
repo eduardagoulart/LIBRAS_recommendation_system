@@ -110,30 +110,9 @@ def return_informations():
              'query': query,
              'recomendados pelo youtube': s
              }
-    f = open("arquivo.txt", 'w', encoding="utf-8")
-    nome_video += ": nome do vídeo"
-    f.write(nome_video)
-    author += ": autor"
-    f.write(author)
-    numero_likes[0] += ": número de likes"
-    f.write(numero_likes[0])
-    numero_likes[1] += ": número de dislikes"
-    f.write(numero_likes[1])
-    view += 'número de visualizações'
-    f.write(view)
-    description += ': descrição do vídeo'
-    f.write(description)
-    published += ": data de publicação"
-    f.write(published)
-    browser_id += 'url do canal'
-    f.write(browser_id)
-    f.write(query)
-    f.write("Vídeos recomendados a seguir pelo Youtube")
-    for i in s:
-        f.write(i)
-    # f.write(s)
-    with open('dados.txt', 'w', encoding="utf-8") as file:
-        json.dump(dados, file)
+
+    with open('dados.json', 'w', encoding="utf-8") as file:
+        json.dump(dados, file, ensure_ascii=False)
     driver.close()
 
 
