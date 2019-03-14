@@ -3,6 +3,7 @@ import time
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import proccess_data
+import csv
 
 
 '''
@@ -64,5 +65,17 @@ def scroll_down(url):
 
 
 if '__main__' == __name__:
-    html = scroll_down('https://www.youtube.com/watch?v=WDHFOT_XNRE')
-    proccess_data.return_informations(html)
+    links = ['https://www.youtube.com/watch?v=WDHFOT_XNRE', 'https://www.youtube.com/watch?v=vHitwM1SROk']
+    data = []
+    for i in links:
+        html = scroll_down(i)
+        data.append(proccess_data.return_informations(html))
+
+    with open('employee_file2.csv', mode='w') as csv_file:
+        fieldnames = ['nome_do_vídeo', 'autor', 'likes', 'deslikes', 'visualização', 'descrição_do_vídeo',
+                      'data_de_publicação', 'url_do_canal', 'query', 'recomendados_pelo_youtube']
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        for i in data:
+            writer.writerow(i)
