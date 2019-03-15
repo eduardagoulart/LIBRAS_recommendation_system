@@ -13,6 +13,7 @@ def return_informations(html_baixado):
              'likes': numero_likes[0],
              'deslikes': numero_likes[1],
              'visualização': parser.parser(html_baixado, 'viewCount":"', '",', True),
+             'duração_do_video': parser.parser(html_baixado, '"lengthText":{"accessibility":{"accessibilityData":{"label":"', '"}}', False),
              'descrição_do_vídeo': parser.parser(html_baixado, '"shortDescription":"', '","isCrawlable"', False),
              'data_de_publicação': parser.parser(html_baixado, '"Published on ', '"},', False),
              'url_do_canal': parser.parser(html_baixado, '{"browseId":"', '"}}}]},', False),
