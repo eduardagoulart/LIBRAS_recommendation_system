@@ -22,4 +22,5 @@ def return_informations(html_baixado):
                                                             '"title":{"accessibility":{"accessibilityData":{"label":"',
                                                             '"}},"simpleText":"')
              }
+
     return dados
