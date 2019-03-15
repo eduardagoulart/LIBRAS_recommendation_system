@@ -4,6 +4,7 @@ import csv
 
 
 def return_informations(html_baixado):
+
     numero_likes = parser.parser(html_baixado, 'tooltip":"', "\"}}", True)
     numero_likes = numero_likes.split(' / ')
 
