@@ -5,7 +5,6 @@ from selenium.webdriver.common.keys import Keys
 import proccess_data
 import csv
 
-
 '''
     Bot para abrir o navegador e buscar um conteúdo
 '''
@@ -68,52 +67,51 @@ def scroll_down(url):
 
 
 if '__main__' == __name__:
-    """
-    links = ['https://www.youtube.com/watch?v=WDHFOT_XNRE', 'https://www.youtube.com/watch?v=vHitwM1SROk', 
-            'https://www.youtube.com/watch?v=Ueb_qIEs3q0', 'https://www.youtube.com/watch?v=YmPKpoqUiCM',
-            'https://www.youtube.com/watch?v=IWs8b1ekVsQ', 'https://www.youtube.com/watch?v=Re9ASuOXiwM',
-            'https://www.youtube.com/watch?v=zEZtQZtw2xA', 'https://www.youtube.com/watch?v=hL1WCuEoCG0',
-            'https://www.youtube.com/watch?v=2fdCB_JlQjw', 'https://www.youtube.com/watch?v=TFVTYaXV314',
-            'https://www.youtube.com/watch?v=8Jw8QcTRWuc', 'https://www.youtube.com/watch?v=YBtWdx4xObs',
-            'https://www.youtube.com/watch?v=YBtWdx4xObs', 'https://www.youtube.com/watch?v=1J7QdEzSyhs',
-            'https://www.youtube.com/watch?v=PugIcPzwoD8', 'https://www.youtube.com/watch?v=FSx0zF7Z6XQ',
-            'https://www.youtube.com/watch?v=Y3m1ye7RJ0A', 'https://www.youtube.com/watch?v=thCm4vnM2LA',
-            'https://www.youtube.com/watch?v=zz4rmjL2nFA&t=2s', 'https://www.youtube.com/watch?v=Ha5eP8p_JKg',
-            'https://www.youtube.com/watch?v=kIXKrh00Og8', 'https://www.youtube.com/watch?v=fxVIPKuMe6k',
-            'https://www.youtube.com/watch?v=RAtvfTC2AbU', 'https://www.youtube.com/watch?v=fdyuWRRjIEQ',
-            'https://www.youtube.com/watch?v=7jsJW10LJGA', 'https://www.youtube.com/watch?v=BMIHzgDDKrc',
-            'https://www.youtube.com/watch?v=u4QJygwAdW0', 'https://www.youtube.com/watch?v=qfXDjWHnmcc',
-            'https://www.youtube.com/watch?v=5lPdTuhast0', 'https://www.youtube.com/watch?v=4VynqNTsG7A',
-            'https://www.youtube.com/watch?v=yipGWYQQsS8', 'https://www.youtube.com/watch?v=MnxYr6vj1WQ&t=18s',
-            'https://www.youtube.com/watch?v=pK4rIVOySKE', 'https://www.youtube.com/watch?v=nI9IMQOTzag'
-            'https://www.youtube.com/watch?v=kuJFNEoFBSI', 'https://www.youtube.com/watch?v=JKqnrBaGbs8',
-            'https://www.youtube.com/watch?v=hnln_GU-M98', 'https://www.youtube.com/watch?v=zhpo0NgjpcM',
-            'https://www.youtube.com/watch?v=IAG43Witg3I', 'https://www.youtube.com/watch?v=ZaFgk5ekhC4',
-            'https://www.youtube.com/watch?v=1J7QdEzSyhs&t=1s', 'https://www.youtube.com/watch?v=UeEuLkNxlMQ'
-            'https://www.youtube.com/watch?v=3JGCKzPDe4Q', 'https://www.youtube.com/watch?v=DxuHClptKoE',
-            'https://www.youtube.com/watch?v=rgCpu3BcxmM', 'https://www.youtube.com/watch?v=GcowO23lzMk',
-            'https://www.youtube.com/watch?v=a3FZLqwucIM', 'https://www.youtube.com/watch?v=8LnwkL80HbE',
-            'https://www.youtube.com/watch?v=hYqNrrF5z6g', 'https://www.youtube.com/watch?v=6llgCt4OMRA',
-            'https://www.youtube.com/watch?v=zNCczm3jzgo', 'https://www.youtube.com/watch?v=OzbwZtT4KDo',
-            'https://www.youtube.com/watch?v=dJed8tRy0SY', 'https://www.youtube.com/watch?v=BHYuCIuvjnE',
-            'https://www.youtube.com/watch?v=81q4IlKHJhc', 'https://www.youtube.com/watch?v=ILQgw6siK14',
-            'https://www.youtube.com/watch?v=4v8NkVqzafg', 'https://www.youtube.com/watch?v=Kx3JV2UuXFE',
-            'https://www.youtube.com/watch?v=JuCVU9rGUa8', 'https://www.youtube.com/watch?v=7q1kF5N1gHs&t=85s',
-            'https://www.youtube.com/watch?v=feBeOzpw2Xc', 'https://www.youtube.com/watch?v=mgSIYg-Astg',
-            'https://www.youtube.com/watch?v=ouDNMKuQkiY', 'https://www.youtube.com/watch?v=LFCr4QNW-x8',
-            'https://www.youtube.com/watch?v=rSKlm0S_5YQ', 'https://www.youtube.com/watch?v=eXbN6RYH6gk',
-            'https://www.youtube.com/watch?v=Z0JvlMRNzek', 'https://www.youtube.com/watch?v=1BahR0kmtCA',
-            'https://www.youtube.com/watch?v=xmfQz21LPkY', 'https://www.youtube.com/watch?v=LOJlL6P9LQ0',
-            'https://www.youtube.com/watch?v=fVPGLJy4zP0&t=2349s', 'https://www.youtube.com/watch?v=UBwGCy14JMk'
-            'https://www.youtube.com/watch?v=KmiQ82ynDkg']
+    links = ['https://www.youtube.com/watch?v=WDHFOT_XNRE', 'https://www.youtube.com/watch?v=vHitwM1SROk',
+             'https://www.youtube.com/watch?v=Ueb_qIEs3q0', 'https://www.youtube.com/watch?v=YmPKpoqUiCM',
+             'https://www.youtube.com/watch?v=IWs8b1ekVsQ', 'https://www.youtube.com/watch?v=Re9ASuOXiwM',
+             'https://www.youtube.com/watch?v=zEZtQZtw2xA', 'https://www.youtube.com/watch?v=hL1WCuEoCG0',
+             'https://www.youtube.com/watch?v=2fdCB_JlQjw', 'https://www.youtube.com/watch?v=TFVTYaXV314',
+             'https://www.youtube.com/watch?v=8Jw8QcTRWuc', 'https://www.youtube.com/watch?v=YBtWdx4xObs',
+             'https://www.youtube.com/watch?v=YBtWdx4xObs', 'https://www.youtube.com/watch?v=1J7QdEzSyhs',
+             'https://www.youtube.com/watch?v=PugIcPzwoD8', 'https://www.youtube.com/watch?v=FSx0zF7Z6XQ',
+             'https://www.youtube.com/watch?v=Y3m1ye7RJ0A', 'https://www.youtube.com/watch?v=thCm4vnM2LA',
+             'https://www.youtube.com/watch?v=zz4rmjL2nFA&t=2s', 'https://www.youtube.com/watch?v=Ha5eP8p_JKg',
+             'https://www.youtube.com/watch?v=kIXKrh00Og8', 'https://www.youtube.com/watch?v=fxVIPKuMe6k',
+             'https://www.youtube.com/watch?v=RAtvfTC2AbU', 'https://www.youtube.com/watch?v=fdyuWRRjIEQ',
+             'https://www.youtube.com/watch?v=7jsJW10LJGA', 'https://www.youtube.com/watch?v=BMIHzgDDKrc',
+             'https://www.youtube.com/watch?v=u4QJygwAdW0', 'https://www.youtube.com/watch?v=qfXDjWHnmcc',
+             'https://www.youtube.com/watch?v=5lPdTuhast0', 'https://www.youtube.com/watch?v=4VynqNTsG7A',
+             'https://www.youtube.com/watch?v=yipGWYQQsS8', 'https://www.youtube.com/watch?v=MnxYr6vj1WQ&t=18s',
+             'https://www.youtube.com/watch?v=pK4rIVOySKE', 'https://www.youtube.com/watch?v=nI9IMQOTzag',
+             'https://www.youtube.com/watch?v=kuJFNEoFBSI', 'https://www.youtube.com/watch?v=JKqnrBaGbs8',
+             'https://www.youtube.com/watch?v=hnln_GU-M98', 'https://www.youtube.com/watch?v=zhpo0NgjpcM',
+             'https://www.youtube.com/watch?v=IAG43Witg3I', 'https://www.youtube.com/watch?v=ZaFgk5ekhC4',
+             'https://www.youtube.com/watch?v=1J7QdEzSyhs&t=1s', 'https://www.youtube.com/watch?v=UeEuLkNxlMQ',
+             'https://www.youtube.com/watch?v=3JGCKzPDe4Q', 'https://www.youtube.com/watch?v=DxuHClptKoE',
+             'https://www.youtube.com/watch?v=rgCpu3BcxmM', 'https://www.youtube.com/watch?v=GcowO23lzMk',
+             'https://www.youtube.com/watch?v=a3FZLqwucIM', 'https://www.youtube.com/watch?v=8LnwkL80HbE',
+             'https://www.youtube.com/watch?v=hYqNrrF5z6g', 'https://www.youtube.com/watch?v=6llgCt4OMRA',
+             'https://www.youtube.com/watch?v=zNCczm3jzgo', 'https://www.youtube.com/watch?v=OzbwZtT4KDo',
+             'https://www.youtube.com/watch?v=dJed8tRy0SY', 'https://www.youtube.com/watch?v=BHYuCIuvjnE',
+             'https://www.youtube.com/watch?v=81q4IlKHJhc', 'https://www.youtube.com/watch?v=ILQgw6siK14',
+             'https://www.youtube.com/watch?v=4v8NkVqzafg', 'https://www.youtube.com/watch?v=Kx3JV2UuXFE',
+             'https://www.youtube.com/watch?v=JuCVU9rGUa8', 'https://www.youtube.com/watch?v=7q1kF5N1gHs&t=85s',
+             'https://www.youtube.com/watch?v=feBeOzpw2Xc', 'https://www.youtube.com/watch?v=mgSIYg-Astg',
+             'https://www.youtube.com/watch?v=ouDNMKuQkiY', 'https://www.youtube.com/watch?v=LFCr4QNW-x8',
+             'https://www.youtube.com/watch?v=rSKlm0S_5YQ', 'https://www.youtube.com/watch?v=eXbN6RYH6gk',
+             'https://www.youtube.com/watch?v=Z0JvlMRNzek', 'https://www.youtube.com/watch?v=1BahR0kmtCA',
+             'https://www.youtube.com/watch?v=xmfQz21LPkY', 'https://www.youtube.com/watch?v=LOJlL6P9LQ0',
+             'https://www.youtube.com/watch?v=fVPGLJy4zP0&t=2349s', 'https://www.youtube.com/watch?v=UBwGCy14JMk',
+             'https://www.youtube.com/watch?v=KmiQ82ynDkg']
     data = []
     for i in links:
         html = scroll_down(i)
         data.append(proccess_data.return_informations(html))
- 
+
     with open('video.csv', mode='w') as csv_file:
-        fieldnames = ['nome_do_vídeo', 'autor', 'likes', 'deslikes', 'visualização', 'descrição_do_vídeo',
-                      'data_de_publicação', 'url_do_canal', 'query', 'recomendados_pelo_youtube']
+        fieldnames = ['nome_do_vídeo', 'autor', 'likes', 'deslikes', 'visualização', 'duração_do_video',
+                      'descrição_do_vídeo', 'data_de_publicação', 'url_do_canal', 'query', 'recomendados_pelo_youtube']
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
 
@@ -131,4 +129,4 @@ if '__main__' == __name__:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerow(data)
-
+    """
