@@ -67,6 +67,7 @@ def scroll_down(url):
 
 
 if '__main__' == __name__:
+    """
     links = ['https://www.youtube.com/watch?v=WDHFOT_XNRE', 'https://www.youtube.com/watch?v=vHitwM1SROk',
              'https://www.youtube.com/watch?v=Ueb_qIEs3q0', 'https://www.youtube.com/watch?v=YmPKpoqUiCM',
              'https://www.youtube.com/watch?v=IWs8b1ekVsQ', 'https://www.youtube.com/watch?v=Re9ASuOXiwM',
@@ -103,7 +104,31 @@ if '__main__' == __name__:
              'https://www.youtube.com/watch?v=Z0JvlMRNzek', 'https://www.youtube.com/watch?v=1BahR0kmtCA',
              'https://www.youtube.com/watch?v=xmfQz21LPkY', 'https://www.youtube.com/watch?v=LOJlL6P9LQ0',
              'https://www.youtube.com/watch?v=fVPGLJy4zP0&t=2349s', 'https://www.youtube.com/watch?v=UBwGCy14JMk',
-             'https://www.youtube.com/watch?v=KmiQ82ynDkg']
+             'https://www.youtube.com/watch?v=KmiQ82ynDkg', 'https://www.youtube.com/watch?v=wKqqaaDnaBI',
+             'https://www.youtube.com/watch?v=SJWDICzqyPQ', 'https://www.youtube.com/watch?v=ndqVp-pr6T0',
+             'https://www.youtube.com/watch?v=snNKbuFlro0', 'https://www.youtube.com/watch?v=hCY8gLYyEI8',
+             'https://www.youtube.com/watch?v=nXI4aO2_G3E', 'https://www.youtube.com/watch?v=RzS5_aSxK0U',
+             'https://www.youtube.com/watch?v=lg2JWcaxy-s', 'https://www.youtube.com/watch?v=X_GGQelOsUk',
+             'https://www.youtube.com/watch?v=yG3ntH2d0XQ', 'https://www.youtube.com/watch?v=fsKJkOzdZYk',
+             'https://www.youtube.com/watch?v=8uOp2wapJ4w', 'https://www.youtube.com/watch?v=CiCEORn-1yM',
+             'https://www.youtube.com/watch?v=Z0JvlMRNzek&t=24s', 'https://www.youtube.com/watch?v=DmMdfpXXjz8',
+             'https://www.youtube.com/watch?v=uEU8p9Gw7TY', 'https://www.youtube.com/watch?v=xtEeh8F1HE0',
+             'https://www.youtube.com/watch?v=jEN4lftLxd4', 'https://www.youtube.com/watch?v=WH9A-mzcq7U',
+             'https://www.youtube.com/watch?v=fq034k55-kA', 'https://www.youtube.com/watch?v=z67NvKCsQE0',
+             'https://www.youtube.com/watch?v=AbY6AmJwA40', 'https://www.youtube.com/watch?v=fremAl8802s',
+             'https://www.youtube.com/watch?v=KmIYadjJO8U', 'https://www.youtube.com/watch?v=16qND1yhi9E',
+             'https://www.youtube.com/watch?v=bhagSKWAYBc', 'https://www.youtube.com/watch?v=neIJQzyr_xc',
+             'https://www.youtube.com/watch?v=tl5pRAtlOsY', 'https://www.youtube.com/watch?v=DmMdfpXXjz8&t=6s',
+             'https://www.youtube.com/watch?v=feNEaOQRAOc', 'https://www.youtube.com/watch?v=xQyAPxv1QWI',
+             'https://www.youtube.com/watch?v=xD9klMZs3aw', 'https://www.youtube.com/watch?v=fsKJkOzdZYk&t=2s',
+             'https://www.youtube.com/watch?v=eXbN6RYH6gk&t=46s', 'https://www.youtube.com/watch?v=J_Q75DiciJY',
+             'https://www.youtube.com/watch?v=LFCr4QNW-x8&t=31s', 'https://www.youtube.com/watch?v=QhWSohfQhC8',
+             'https://www.youtube.com/watch?v=tGS9tMzC10Q', 'https://www.youtube.com/watch?v=xuwC4UEf65c',
+             'https://www.youtube.com/watch?v=4ziBIATB5gs', 'https://www.youtube.com/watch?v=lg2JWcaxy-s&t=1s',
+             'https://www.youtube.com/watch?v=bdQudfWfLg4', 'https://www.youtube.com/watch?v=4mUS3Wc-rGo&t=32s',
+             'https://www.youtube.com/watch?v=0tzFlKg1e4I', 'https://www.youtube.com/watch?v=JI4gtl757a0',
+             'https://www.youtube.com/watch?v=HlEZsDdjNoQ', 'https://www.youtube.com/watch?v=xfzE49pWHVU',
+             'https://www.youtube.com/watch?v=S8GL5sjjD7w', 'https://www.youtube.com/watch?v=8_GHftBajtU']
     data = []
     for i in links:
         html = scroll_down(i)
@@ -118,7 +143,7 @@ if '__main__' == __name__:
         for i in data:
             writer.writerow(i)
     """
-    html = scroll_down('https://www.youtube.com/watch?v=KmiQ82ynDkg')
+    html = scroll_down('https://www.youtube.com/watch?v=S8GL5sjjD7w')
     # html = scroll_down("https://www.youtube.com/watch?v=Ueb_qIEs3q0")
 
     data = proccess_data.return_informations(html)
@@ -129,4 +154,4 @@ if '__main__' == __name__:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerow(data)
-    """
+
