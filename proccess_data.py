@@ -1,6 +1,4 @@
-import json
 import parser
-import csv
 
 
 def return_informations(html_baixado):
