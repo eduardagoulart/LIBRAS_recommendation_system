@@ -13,4 +13,3 @@ def limpa_query(csv):
     return df
 
 
-limpa_query('video.csv')

@@ -67,7 +67,7 @@ def scroll_down(url):
 
 
 if '__main__' == __name__:
-    """
+
     links = ['https://www.youtube.com/watch?v=WDHFOT_XNRE', 'https://www.youtube.com/watch?v=vHitwM1SROk',
              'https://www.youtube.com/watch?v=Ueb_qIEs3q0', 'https://www.youtube.com/watch?v=YmPKpoqUiCM',
              'https://www.youtube.com/watch?v=IWs8b1ekVsQ', 'https://www.youtube.com/watch?v=Re9ASuOXiwM',
@@ -125,10 +125,10 @@ if '__main__' == __name__:
              'https://www.youtube.com/watch?v=LFCr4QNW-x8&t=31s', 'https://www.youtube.com/watch?v=QhWSohfQhC8',
              'https://www.youtube.com/watch?v=tGS9tMzC10Q', 'https://www.youtube.com/watch?v=xuwC4UEf65c',
              'https://www.youtube.com/watch?v=4ziBIATB5gs', 'https://www.youtube.com/watch?v=lg2JWcaxy-s&t=1s',
-             'https://www.youtube.com/watch?v=bdQudfWfLg4', 'https://www.youtube.com/watch?v=4mUS3Wc-rGo&t=32s',
-             'https://www.youtube.com/watch?v=0tzFlKg1e4I', 'https://www.youtube.com/watch?v=JI4gtl757a0',
-             'https://www.youtube.com/watch?v=HlEZsDdjNoQ', 'https://www.youtube.com/watch?v=xfzE49pWHVU',
-             'https://www.youtube.com/watch?v=S8GL5sjjD7w', 'https://www.youtube.com/watch?v=8_GHftBajtU']
+             'https://www.youtube.com/watch?v=bdQudfWfLg4', 'https://www.youtube.com/watch?v=0tzFlKg1e4I',
+             'https://www.youtube.com/watch?v=JI4gtl757a0', 'https://www.youtube.com/watch?v=HlEZsDdjNoQ',
+             'https://www.youtube.com/watch?v=xfzE49pWHVU', 'https://www.youtube.com/watch?v=S8GL5sjjD7w',
+             'https://www.youtube.com/watch?v=8_GHftBajtU']
     data = []
     for i in links:
         html = scroll_down(i)
@@ -154,4 +154,4 @@ if '__main__' == __name__:
         writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerow(data)
-
+    """
