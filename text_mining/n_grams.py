@@ -1,13 +1,15 @@
 from nltk import *
 import clean_datas
+import re
 import nltk
 
 
 def description():
     new_datas = clean_datas.limpa_query('video.csv')
     description_datas = [data for data in new_datas[6]]
-    slited_data = [nltk.word_tokenize(i.lower()) for i in description_datas]
-    return slited_data
+    splited_data = [nltk.word_tokenize(i) for i in description_datas]
+    # lower_data = [low.lower() for list_low in splited_data for low in list_low]
+    return splited_data
 
 
 def table_declaration():
@@ -46,9 +48,32 @@ def stop_words():
 
 
 def remove_stop_words():
-    st = RSLPStemmer()
-    tokens = [token for _list in description() for token in _list if token not in stop_words()]
-    tokens = [st.stem(replace(token, table_declaration())) for token in tokens if token.isalpha()]
-    return tokens
+    table = table_declaration()
+
+    descriptions = description()
+    for internal_list in range(1, len(descriptions)):
+        for tokens in range(len(descriptions[internal_list])):
+            descriptions[internal_list][tokens] = descriptions[internal_list][tokens].lower()
+            if descriptions[internal_list][tokens] in table_declaration():
+                descriptions[internal_list][tokens] = re.sub(descriptions[internal_list][tokens],
+                                                             table_declaration()[descriptions[internal_list][tokens]],
+                                                             descriptions[internal_list][tokens])
+            if descriptions[internal_list][tokens] in stop_words():
+                descriptions[internal_list][tokens] = re.sub(descriptions[internal_list][tokens], '',
+                                                             descriptions[internal_list][tokens])
+
+    print(descriptions)
+    '''
+    print(description())
+        # print(description()[internal_list])
+    for internal_list in descriptions:
+        for tokens in internal_list:
+            if tokens in table.keys():
+                tokens = re.sub()
+                # descriptions[nal_list[tokens]] = table
+    print("****" * 5)
+    print(stop_words())
+    '''
+
 
 remove_stop_words()
