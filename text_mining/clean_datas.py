@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-def limpa_query(csv):
+def clean_query(csv):
     df = pd.read_csv(csv, header=None)
     for i in range(len(df)):
         if df[9][i][0] != '#':

@@ -5,10 +5,9 @@ import nltk
 
 
 def description():
-    new_datas = clean_datas.limpa_query('video.csv')
+    new_datas = clean_datas.clean_query('video.csv')
     description_datas = [data for data in new_datas[6]]
     splited_data = [nltk.word_tokenize(i) for i in description_datas]
-    # lower_data = [low.lower() for list_low in splited_data for low in list_low]
     return splited_data
 
 
@@ -38,12 +37,6 @@ def replace(s, _table):
 
 
 def stop_words():
-    stop = nltk.corpus.stopwords.words('portuguese')
-
-    with open('stop_words.txt', 'w') as file:
-        for i in stop:
-            file.write(i)
-            file.write('\n')
     return nltk.corpus.stopwords.words('portuguese')
 
 
@@ -64,4 +57,5 @@ def remove_stop_words():
     return final_text
 
 
-remove_stop_words()
+# :TODO computar a frquência de cada termo
+print(remove_stop_words())
