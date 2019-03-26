@@ -52,10 +52,21 @@ def remove_stop_words():
                                                              descriptions[internal_list][tokens])
 
     final_text = [descriptions[i][j] for i in range(1, len(descriptions)) for j in range(len(descriptions[i])) if
-                  not descriptions[i][j] in stop]
+                  descriptions[i][j] not in stop]
+    # print(stop)
+    # print(final_text)
 
     return final_text
 
 
+def count_frequency(text):
+    fdist = nltk.FreqDist(text)
+    most_frequent = [(word, frequency) for word, frequency in fdist.most_common(120)]
+    print(most_frequent)
+    return most_frequent
+
+
 # :TODO computar a frquência de cada termo
-print(remove_stop_words())
+stop = remove_stop_words()
+count_frequency(stop)
+# print(stop)
