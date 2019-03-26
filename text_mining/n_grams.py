@@ -48,8 +48,7 @@ def stop_words():
 
 
 def remove_stop_words():
-    table = table_declaration()
-
+    stop = stop_words()
     descriptions = description()
     for internal_list in range(1, len(descriptions)):
         for tokens in range(len(descriptions[internal_list])):
@@ -58,22 +57,11 @@ def remove_stop_words():
                 descriptions[internal_list][tokens] = re.sub(descriptions[internal_list][tokens],
                                                              table_declaration()[descriptions[internal_list][tokens]],
                                                              descriptions[internal_list][tokens])
-            if descriptions[internal_list][tokens] in stop_words():
-                descriptions[internal_list][tokens] = re.sub(descriptions[internal_list][tokens], '',
-                                                             descriptions[internal_list][tokens])
 
-    print(descriptions)
-    '''
-    print(description())
-        # print(description()[internal_list])
-    for internal_list in descriptions:
-        for tokens in internal_list:
-            if tokens in table.keys():
-                tokens = re.sub()
-                # descriptions[nal_list[tokens]] = table
-    print("****" * 5)
-    print(stop_words())
-    '''
+    final_text = [descriptions[i][j] for i in range(1, len(descriptions)) for j in range(len(descriptions[i])) if
+                  not descriptions[i][j] in stop]
+
+    return final_text
 
 
 remove_stop_words()
