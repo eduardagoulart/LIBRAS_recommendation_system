@@ -1,5 +1,6 @@
 from nltk import *
 import clean_datas
+import stop_simbles
 import re
 import nltk
 
@@ -53,20 +54,23 @@ def remove_stop_words():
 
     final_text = [descriptions[i][j] for i in range(1, len(descriptions)) for j in range(len(descriptions[i])) if
                   descriptions[i][j] not in stop]
-    # print(stop)
-    # print(final_text)
 
     return final_text
 
 
+def remove_stop_simbles(text):
+    simbles = stop_simbles.stop()
+    remove = [final for final in text if final not in simbles]
+    return remove
+
+
 def count_frequency(text):
     fdist = nltk.FreqDist(text)
-    most_frequent = [(word, frequency) for word, frequency in fdist.most_common(120)]
-    print(most_frequent)
+    most_frequent = [(word, frequency) for word, frequency in fdist.most_common(100)]
     return most_frequent
 
 
-# :TODO computar a frquência de cada termo
-stop = remove_stop_words()
-count_frequency(stop)
-# print(stop)
+# TODO remove simbles ) , -- \n
+stops = remove_stop_words()
+s = remove_stop_simbles(stops)
+print(count_frequency(s))
