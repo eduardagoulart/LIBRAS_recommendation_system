@@ -1,13 +1,13 @@
 from nltk import *
 import clean_datas
-import stop_simbles
 import re
 import nltk
+import string
 
 
 def description():
     new_datas = clean_datas.clean_query('video.csv')
-    description_datas = [data for data in new_datas[6]]
+    description_datas = [data.translate(data.maketrans('', '', string.punctuation)) for data in new_datas[6]]
     splited_data = [nltk.word_tokenize(i) for i in description_datas]
     return splited_data
 
@@ -58,12 +58,6 @@ def remove_stop_words():
     return final_text
 
 
-def remove_stop_simbles(text):
-    simbles = stop_simbles.stop()
-    remove = [final for final in text if final not in simbles]
-    return remove
-
-
 def count_frequency(text):
     fdist = nltk.FreqDist(text)
     most_frequent = [(word, frequency) for word, frequency in fdist.most_common(100)]
@@ -72,5 +66,4 @@ def count_frequency(text):
 
 # TODO remove simbles ) , -- \n
 stops = remove_stop_words()
-s = remove_stop_simbles(stops)
-print(count_frequency(s))
+print(count_frequency(stops))
