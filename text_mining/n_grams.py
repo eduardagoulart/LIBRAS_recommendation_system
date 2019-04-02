@@ -3,13 +3,14 @@ import clean_datas
 import re
 import nltk
 import string
+import numpy as np
 
 
 def description():
     new_datas = clean_datas.clean_query('video.csv')
     description_datas = [data.translate(data.maketrans('', '', string.punctuation)) for data in new_datas[6]]
     splited_data = [nltk.word_tokenize(i) for i in description_datas]
-    return splited_data
+    return description_datas, splited_data
 
 
 def table_declaration():
@@ -43,7 +44,7 @@ def stop_words():
 
 def remove_stop_words():
     stop = stop_words()
-    descriptions = description()
+    _, descriptions = description()
     for internal_list in range(1, len(descriptions)):
         for tokens in range(len(descriptions[internal_list])):
             descriptions[internal_list][tokens] = descriptions[internal_list][tokens].lower()
@@ -60,10 +61,7 @@ def remove_stop_words():
 
 def count_frequency(text):
     fdist = nltk.FreqDist(text)
-    most_frequent = [(word, frequency) for word, frequency in fdist.most_common(100)]
+    most_frequent = [word for word, frequency in fdist.most_common(100)]
     return most_frequent
 
 
-# TODO remove simbles ) , -- \n
-stops = remove_stop_words()
-print(count_frequency(stops))
