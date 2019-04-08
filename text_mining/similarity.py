@@ -102,7 +102,7 @@ def text_simillarities(id_text, n_text, features=features, text=corpus):
 
 def matrix(corpus):
 
-    simillarity = [[{corpus_clear[leg]: {t:s}} for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
+    simillarity = [[(s, t) for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
                    range(1, len(corpus_clear))]
     mat = []
     # list_objects = []
@@ -119,7 +119,11 @@ def matrix(corpus):
 
     # print(m)
     writer = csv.writer(simillarity_file)
-    writer.writerow(mat)
+    for i in simillarity:
+        writer.writerow(i)
+        print(i)
+    #print(len(simillarity[0]))
+    # print(simillarity)
 
 
 
