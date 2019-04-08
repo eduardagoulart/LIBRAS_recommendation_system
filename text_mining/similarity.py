@@ -1,3 +1,4 @@
+import csv
 import re
 import string
 import numpy as np
@@ -38,20 +39,15 @@ def clear_text(text):
     pattern = "[{}]".format(string.punctuation)
     text = [word.lower() for word in text]
     text = [[re.sub(pattern, "", word) for word in words.split()] for words in text]
-    for words in text:
-        for word in words:
-            if len(word) > 1:
-                print(word)
-    text = [[word for word in words if len(word) > 1] for words in text]
-    print(len(text))
 
-    for words in range(0, len(text)):
+    # text = [[word for word in words if len(word) > 1] for words in text]
+
+    for words in range(1, len(text)):
         for word in range(len(text[words])):
             if text[words][word] in table:
                 text[words][word] = re.sub(text[words][word], table[text[words][word]], text[words][word])
 
-    text = [[word for word in words if word not in stopwords] for words in text ]
-    print(len(text))
+    text = [[word for word in words if word not in stopwords] for words in text]
 
     text = [[word for word in words if len(word) > 1] for words in text]
     text = [' '.join(words) for words in text]
@@ -61,13 +57,6 @@ def clear_text(text):
 new_datas = clean_datas.clean_query('video.csv')
 corpus = np.array(new_datas[6])
 corpus_clear = clear_text(corpus)
-
-
-def popular_words(text):
-    print(text)
-
-
-# popular_words(corpus_clear)
 
 
 def text_all(text):
@@ -97,11 +86,10 @@ features = np.array(list(map(fit_transform, corpus_clear)))
 
 
 def cosine_similarity(v, w):
-    # return np.dot(v, w) / np.sqrt(np.dot(v, v) * np.dot(w, w))
-    return np.dot(v, w)/(np.linalg.norm(v)*np.linalg.norm(w))
+    return np.dot(v, w) / (np.linalg.norm(v) * np.linalg.norm(w))
 
 
-def text_simillarities(id_text, features=features, text=corpus, n_text=3):
+def text_simillarities(id_text, n_text, features=features, text=corpus):
     """
     Dado o texto a ser analisado, a função retorna em ordem descrecente quais os demais textos são
     similares ao analisado. A função retorna matriz de 2 por n_text, onde a primeira e a segunda coluna
@@ -112,6 +100,42 @@ def text_simillarities(id_text, features=features, text=corpus, n_text=3):
     return [[text[y], simillarity[x, 0]] for x, y in enumerate(np.int0(simillarity[1:, 1]), 1)][:n_text]
 
 
+def matrix(corpus):
+
+    simillarity = [[{corpus_clear[leg]: {t:s}} for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
+                   range(1, len(corpus_clear))]
+    mat = []
+    # list_objects = []
+    simillarity_file = open('text_mining/simillarity.csv', mode='w')
+    # writer.writeheader()
+    for leg in range(1, len(corpus_clear)):
+        # mat.append(corpus_clear[leg])
+        for t, s in text_simillarities(id_text=leg, n_text=121):
+            # print(t,s)
+            mat.append([t,s])
+        # print(mat[corpus_clear[leg]])
+        # writer.writerow(mat)
+        # list_objects.append(mat[corpus_clear[leg]])
+
+    # print(m)
+    writer = csv.writer(simillarity_file)
+    writer.writerow(mat)
+
+
+
+
+matrix(corpus)
+'''
+e = open('teste.txt', 'w')
 print('Texto analisado -> ', corpus[3], '\n')
-for t, s in text_simillarities(3):
-    print('Texto: {} | Similaridade: {}'.format(t, round(s, 2)))
+for t, s in text_simillarities(1, 121):
+    # print(t)
+
+    print(type(t))
+    print('-------------')
+    e.write(str(t))
+    e.write(str(round(s, 10)))
+    e.write('\n')
+
+    # print('Texto: {} | Similaridade: {}'.format(t, round(s, 10)))
+'''
