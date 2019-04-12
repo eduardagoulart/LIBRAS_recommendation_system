@@ -16,6 +16,18 @@ class PreProcessamentoDados:
         time_in_seconds = (age.days * 86400) + age.seconds
         return time_in_seconds
 
+    def duration(self):
+        data = self.file['duração_do_video']
+        rcv_data = data[0].split(" ")
+        duration_time = 0
+
+        print(data[0].split(" "))
+        if rcv_data[1] == 'minutes,':
+            duration_time += int(rcv_data[0]) * 60
+            if rcv_data[3] == 'seconds':
+                duration_time += int(rcv_data[2])
+        print(duration_time)
+
 
 if __name__ == '__main__':
-    PreProcessamentoDados().video_age()
+    PreProcessamentoDados().duration()
