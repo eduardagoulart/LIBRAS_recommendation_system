@@ -9,12 +9,15 @@ class PreProcessamentoDados:
 
     def video_age(self):
         data_time = self.file['data_de_publicação']
-        splited_data = data_time[0].split(" ")
         abbr_to_num = {name: num for num, name in enumerate(calendar.month_abbr) if num}
-        splited_data[1] = splited_data[1].replace(",", "")
-        age = datetime.now() - datetime(int(splited_data[2]), abbr_to_num[splited_data[0]], int(splited_data[1]))
-        time_in_seconds = (age.days * 86400) + age.seconds
-        return time_in_seconds
+        time = []
+        for value in data_time:
+            data_splited = value.split(" ")
+            data_splited[1] = data_splited[1].replace(",", "")
+            age = datetime.now() - datetime(int(data_splited[2]), abbr_to_num[data_splited[0]], int(data_splited[1]))
+            time_in_seconds = (age.days * 86400) + age.seconds
+            time.append(time_in_seconds)
+        return time
 
     def duration(self):
         data = self.file['duração_do_video']
@@ -30,4 +33,4 @@ class PreProcessamentoDados:
 
 
 if __name__ == '__main__':
-    PreProcessamentoDados().duration()
+    PreProcessamentoDados().video_age()
