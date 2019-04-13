@@ -4,6 +4,7 @@ import calendar
 
 
 class PreProcessamentoDados:
+
     def __init__(self):
         self.file = pd.read_csv('video.csv')
 
@@ -19,6 +20,39 @@ class PreProcessamentoDados:
             time.append(time_in_seconds)
         return time
 
+    def duracao(self):
+        data = self.file['duração_do_video']
+        time = []
+        for video in data:
+            rcv_data = video.split(" ")
+            if rcv_data[1] == 'minutes,':
+                time.append(self.minutes_plus_seconds(rcv_data))
+
+            elif rcv_data[1] == 'minutes':
+                time.append(self.only_minutes(rcv_data))
+            elif rcv_data[1] == 'hour,':
+                time.append(self.hour_plus_minutes(rcv_data))
+            else:
+                time.append(rcv_data[0])
+        return time
+
+    def minutes_plus_seconds(self, rcv_data):
+        duration_time = 0
+        duration_time += int(rcv_data[0]) * 60
+        if rcv_data[3] == 'seconds':
+            duration_time += int(rcv_data[2])
+        return duration_time
+
+    def hour_plus_minutes(self, rcv_data):
+        duration_time = 0
+        duration_time += int(rcv_data[0]) * 3600
+        if rcv_data[3] == 'minutes':
+            duration_time += int(rcv_data[2]) * 60
+        return duration_time
+
+    def only_minutes(self, rcv_data):
+        return int(rcv_data[0]) * 60
+
     def duration(self):
         data = self.file['duração_do_video']
         rcv_data = data[0].split(" ")
@@ -33,4 +67,4 @@ class PreProcessamentoDados:
 
 
 if __name__ == '__main__':
-    PreProcessamentoDados().video_age()
+    PreProcessamentoDados().duracao()
