@@ -20,7 +20,16 @@ class PreProcessamentoDados:
             time.append(time_in_seconds)
         return time
 
-    def duracao(self):
+    def age_normalize(self):
+        age = self.video_age()
+        standard = age.copy()
+        standard.sort(reverse=True)
+        max_value = standard[0]
+        standard = [value/max_value for value in standard]
+        print(standard)
+        return standard
+
+    def duration(self):
         data = self.file['duração_do_video']
         time = []
         for video in data:
@@ -53,18 +62,6 @@ class PreProcessamentoDados:
     def only_minutes(self, rcv_data):
         return int(rcv_data[0]) * 60
 
-    def duration(self):
-        data = self.file['duração_do_video']
-        rcv_data = data[0].split(" ")
-        duration_time = 0
-
-        print(data[0].split(" "))
-        if rcv_data[1] == 'minutes,':
-            duration_time += int(rcv_data[0]) * 60
-            if rcv_data[3] == 'seconds':
-                duration_time += int(rcv_data[2])
-        print(duration_time)
-
 
 if __name__ == '__main__':
-    PreProcessamentoDados().duracao()
+    PreProcessamentoDados().age_normalize()
