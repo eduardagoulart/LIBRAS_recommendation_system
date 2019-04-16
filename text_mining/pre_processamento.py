@@ -26,7 +26,6 @@ class PreProcessamentoDados:
         standard.sort(reverse=True)
         max_value = standard[0]
         standard = [value/max_value for value in standard]
-        print(standard)
         return standard
 
     def duration(self):
@@ -62,6 +61,13 @@ class PreProcessamentoDados:
     def only_minutes(self, rcv_data):
         return int(rcv_data[0]) * 60
 
+    def author(self):
+        authors_list = self.file['autor']
+        referential = authors_list[0]
+        authors_list[37] = authors_list[37].split('"')[0]
+        final_result = [1 if i == referential else 0 for i in authors_list]
+        return final_result
+
 
 if __name__ == '__main__':
-    PreProcessamentoDados().age_normalize()
+    PreProcessamentoDados().author()
