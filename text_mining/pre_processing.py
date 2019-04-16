@@ -63,9 +63,8 @@ class PreProcessamentoDados:
 
     def author(self):
         authors_list = self.file['autor']
-        referential = authors_list[0]
         authors_list[37] = authors_list[37].split('"')[0]
-        final_result = [1 if i == referential else 0 for i in authors_list]
+        final_result = [[1 if i == referential else 0 for i in authors_list] for referential in authors_list]
         return final_result
 
 
