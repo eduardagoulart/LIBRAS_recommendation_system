@@ -20,6 +20,8 @@ class PreProcessamentoDados:
             time.append(time_in_seconds)
         return time
 
+    # :TODO quando normaliza a idade, o valor da quantidade de visualizações fica muito grande
+
     def age_normalize(self):
         age = self.video_age()
         standard = age.copy()
@@ -67,6 +69,19 @@ class PreProcessamentoDados:
         final_result = [[1 if i == referential else 0 for i in authors_list] for referential in authors_list]
         return final_result
 
+    def views_relative_age(self):
+        views = self.file['visualização']
+        age = self.video_age()
+        views_relative = [views[i] / age[i] for i in range(0, len(views))]
+        # for i in range(l)
+        print(views_relative)
+        print(len(views_relative))
+        return views_relative
+
+    def likes_relative_views(self):
+        likes = self.file['likes']
+
+
 
 if __name__ == '__main__':
-    PreProcessamentoDados().author()
+    PreProcessamentoDados().views_relative_age()
