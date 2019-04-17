@@ -88,6 +88,14 @@ class PreProcessamentoDados:
         likes_relative = [likes[i] / views[i] for i in range(0, len(likes))]
         return likes_relative
 
+    def deslikes_relative_views(self):
+        deslikes = self.file['deslikes']
+        deslikes = [re.sub(",", "", deslike) for deslike in deslikes]
+        deslikes = list(map(int, deslikes))
+        views = self.file['visualização']
+        deslikes_relative = [deslikes[i] / views[i] for i in range(0, len(deslikes))]
+        return deslikes_relative
+
 
 if __name__ == '__main__':
-    PreProcessamentoDados().likes_relative_views()
+    PreProcessamentoDados().deslikes_relative_views()
