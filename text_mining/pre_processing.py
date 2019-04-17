@@ -1,3 +1,5 @@
+import re
+
 import pandas as pd
 from datetime import datetime
 import calendar
@@ -27,7 +29,7 @@ class PreProcessamentoDados:
         standard = age.copy()
         standard.sort(reverse=True)
         max_value = standard[0]
-        standard = [value/max_value for value in standard]
+        standard = [value / max_value for value in standard]
         return standard
 
     def duration(self):
@@ -46,21 +48,24 @@ class PreProcessamentoDados:
                 time.append(rcv_data[0])
         return time
 
-    def minutes_plus_seconds(self, rcv_data):
+    @staticmethod
+    def minutes_plus_seconds(rcv_data):
         duration_time = 0
         duration_time += int(rcv_data[0]) * 60
         if rcv_data[3] == 'seconds':
             duration_time += int(rcv_data[2])
         return duration_time
 
-    def hour_plus_minutes(self, rcv_data):
+    @staticmethod
+    def hour_plus_minutes(rcv_data):
         duration_time = 0
         duration_time += int(rcv_data[0]) * 3600
         if rcv_data[3] == 'minutes':
             duration_time += int(rcv_data[2]) * 60
         return duration_time
 
-    def only_minutes(self, rcv_data):
+    @staticmethod
+    def only_minutes(rcv_data):
         return int(rcv_data[0]) * 60
 
     def author(self):
@@ -73,15 +78,16 @@ class PreProcessamentoDados:
         views = self.file['visualização']
         age = self.video_age()
         views_relative = [views[i] / age[i] for i in range(0, len(views))]
-        # for i in range(l)
-        print(views_relative)
-        print(len(views_relative))
         return views_relative
 
     def likes_relative_views(self):
         likes = self.file['likes']
-
+        likes = [re.sub(",", "", like) for like in likes]
+        likes = list(map(int, likes))
+        views = self.file['visualização']
+        likes_relative = [likes[i] / views[i] for i in range(0, len(likes))]
+        return likes_relative
 
 
 if __name__ == '__main__':
-    PreProcessamentoDados().views_relative_age()
+    PreProcessamentoDados().likes_relative_views()
