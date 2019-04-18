@@ -25,8 +25,9 @@ class VideoDistance:
 
     def normallize_sum(self):
         matrix = self.matrix_pre_process()
-        for i in matrix:
-            print(f'matrix: {i}')
+        standard = [[value / max(internal_list) for value in internal_list] for internal_list in matrix]
+        return standard
+
 
     def simillarity_matrix(self):
         pass
