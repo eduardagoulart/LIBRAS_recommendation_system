@@ -14,17 +14,15 @@ class VideoDistance:
 
     def matrix_pre_process(self):
         age = self.obj.age_normalize()
-        print(f'age: {age[0]}')
         duration = self.obj.duration()
-        print(f'duration: {duration[0]}')
         view = self.obj.views_relative_age()
-        print(f'view: {view[0]}')
         likes = self.obj.likes_relative_views()
-        print(f'likes: {likes[0]}')
         deslikes = self.obj.deslikes_relative_views()
-        print(f'deslikes: {deslikes[0]}')
+        authors = self.obj.author()
         sum_values = [age[i] + duration[i] + view[i] + likes[i] + deslikes[i] for i in range(0, len(age))]
-        print(sum_values)
+        sum_values = [[sum_values[i] + authors[i] for i in range(0, len(j))] for j in authors]
+        return sum_values
+    
 
     def simillarity_matrix(self):
         pass

@@ -1,5 +1,4 @@
 import re
-
 import pandas as pd
 from datetime import datetime
 import calendar
@@ -69,8 +68,9 @@ class PreProcessamentoDados:
 
     def author(self):
         authors_list = self.file['autor']
-        authors_list[37] = authors_list[37].split('"')[0]
-        final_result = [[1 if i == referential else 0 for i in authors_list] for referential in authors_list]
+        authors = authors_list.copy()
+        authors[37] = authors[37].split('"')[0]
+        final_result = [[1 if i == referential else 0 for i in authors] for referential in authors]
         return final_result
 
     def views_relative_age(self):
