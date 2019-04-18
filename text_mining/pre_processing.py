@@ -22,14 +22,12 @@ class PreProcessamentoDados:
             time.append(time_in_seconds)
         return time
 
-    # :TODO quando normaliza a idade, o valor da quantidade de visualizações fica muito grande
-
     def age_normalize(self):
         age = self.video_age()
         standard = age.copy()
         standard.sort(reverse=True)
         max_value = standard[0]
-        standard = [value / max_value for value in standard]
+        standard = [value / max_value for value in age]
         return standard
 
     def duration(self):
@@ -39,13 +37,15 @@ class PreProcessamentoDados:
             rcv_data = video.split(" ")
             if rcv_data[1] == 'minutes,':
                 time.append(self.minutes_plus_seconds(rcv_data))
-
             elif rcv_data[1] == 'minutes':
                 time.append(self.only_minutes(rcv_data))
             elif rcv_data[1] == 'hour,':
                 time.append(self.hour_plus_minutes(rcv_data))
             else:
                 time.append(rcv_data[0])
+        max_value = max(time)
+        time = [value / max_value for value in time]
+        print(time)
         return time
 
     @staticmethod
@@ -98,4 +98,4 @@ class PreProcessamentoDados:
 
 
 if __name__ == '__main__':
-    PreProcessamentoDados().deslikes_relative_views()
+    PreProcessamentoDados().views_relative_age()
