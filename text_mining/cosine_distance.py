@@ -20,9 +20,13 @@ class VideoDistance:
         deslikes = self.obj.deslikes_relative_views()
         authors = self.obj.author()
         sum_values = [age[i] + duration[i] + view[i] + likes[i] + deslikes[i] for i in range(0, len(age))]
-        sum_values = [[sum_values[i] + authors[i] for i in range(0, len(j))] for j in authors]
+        sum_values = [[float(sum_values[i]) + author[i] for i in range(0, len(author))] for author in authors]
         return sum_values
-    
+
+    def normallize_sum(self):
+        matrix = self.matrix_pre_process()
+        for i in matrix:
+            print(f'matrix: {i}')
 
     def simillarity_matrix(self):
         pass
@@ -32,4 +36,4 @@ if "__main__" == __name__:
     u = [1, 2, 3, 4, 5, 7]
     v = [2, 3, 7, 8, 9, 6]
     # VideoDistance().cosine(u, v)
-    VideoDistance().matrix_pre_process()
+    VideoDistance().normallize_sum()
