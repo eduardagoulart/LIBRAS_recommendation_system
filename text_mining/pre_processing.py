@@ -45,7 +45,6 @@ class PreProcessamentoDados:
                 time.append(rcv_data[0])
         max_value = max(time)
         time = [value / max_value for value in time]
-        print(time)
         return time
 
     @staticmethod
@@ -95,7 +94,3 @@ class PreProcessamentoDados:
         views = self.file['visualização']
         deslikes_relative = [deslikes[i] / views[i] for i in range(0, len(deslikes))]
         return deslikes_relative
-
-
-if __name__ == '__main__':
-    PreProcessamentoDados().views_relative_age()

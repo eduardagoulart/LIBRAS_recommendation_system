@@ -105,41 +105,19 @@ def matrix(corpus):
     simillarity = [[(s, t) for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
                    range(1, len(corpus_clear))]
     mat = []
-    # list_objects = []
     simillarity_file = open('text_mining/simillarity.csv', mode='w')
-    # writer.writeheader()
     for leg in range(1, len(corpus_clear)):
-        # mat.append(corpus_clear[leg])
         for t, s in text_simillarities(id_text=leg, n_text=121):
-            # print(t,s)
             mat.append([t,s])
-        # print(mat[corpus_clear[leg]])
-        # writer.writerow(mat)
-        # list_objects.append(mat[corpus_clear[leg]])
 
     # print(m)
     writer = csv.writer(simillarity_file)
     for i in simillarity:
         writer.writerow(i)
         print(i)
-    #print(len(simillarity[0]))
-    # print(simillarity)
+
 
 
 
 
 matrix(corpus)
-'''
-e = open('teste.txt', 'w')
-print('Texto analisado -> ', corpus[3], '\n')
-for t, s in text_simillarities(1, 121):
-    # print(t)
-
-    print(type(t))
-    print('-------------')
-    e.write(str(t))
-    e.write(str(round(s, 10)))
-    e.write('\n')
-
-    # print('Texto: {} | Similaridade: {}'.format(t, round(s, 10)))
-'''
