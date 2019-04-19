@@ -7,9 +7,8 @@ class VideoDistance:
         self.obj = PreProcessamentoDados()
 
     @staticmethod
-    def cosine(u, v):
+    def cosine_distance(u, v):
         dist = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
-        print(dist)
         return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
 
     def matrix_pre_process(self):
@@ -28,13 +27,17 @@ class VideoDistance:
         standard = [[value / max(internal_list) for value in internal_list] for internal_list in matrix]
         return standard
 
-
     def simillarity_matrix(self):
-        pass
+        original_matrix = self.normallize_sum()
+        value = [[self.cosine_distance(referential, list_value) for list_value in original_matrix]for referential in original_matrix]
+        print(value)
+        print(len(value))
+
 
 
 if "__main__" == __name__:
     u = [1, 2, 3, 4, 5, 7]
-    v = [2, 3, 7, 8, 9, 6]
-    # VideoDistance().cosine(u, v)
-    VideoDistance().normallize_sum()
+    # v = [2, 3, 7, 8, 9, 6]
+    v = [1, 2, 3, 4, 5, 7]
+    # VideoDistance().cosine_distance(u, v)
+    VideoDistance().simillarity_matrix()
