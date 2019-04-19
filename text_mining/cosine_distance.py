@@ -8,7 +8,6 @@ class VideoDistance:
 
     @staticmethod
     def cosine_distance(u, v):
-        dist = np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
         return np.dot(u, v) / (np.linalg.norm(u) * np.linalg.norm(v))
 
     def matrix_pre_process(self):
@@ -30,9 +29,7 @@ class VideoDistance:
     def simillarity_matrix(self):
         original_matrix = self.normallize_sum()
         value = [[self.cosine_distance(referential, list_value) for list_value in original_matrix]for referential in original_matrix]
-        print(value)
-        print(len(value))
-
+        return value
 
 
 if "__main__" == __name__:
