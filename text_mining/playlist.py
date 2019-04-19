@@ -15,7 +15,9 @@ class Playlist:
         for i in range(0, 10):
             value = max(first)
             list_recomendation.append(self.file["nome_do_vídeo"][first.index(value)])
+            new = self.distances[first.index(value)]
             first[first.index(value)] = -1
+            first = [first[j] + new[j] for j in range(0, len(new))]
         return list_recomendation
 
 
