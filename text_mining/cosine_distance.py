@@ -42,9 +42,6 @@ class VideoDistance:
 
     def simillarity_without_author(self):
         norma = self.normalize_sum()
-
-        value = [[abs(referential - value) for value in norma] for referential in norma]
-        print(value)
         return [[abs(referential - value) for value in norma] for referential in norma]
 
 
