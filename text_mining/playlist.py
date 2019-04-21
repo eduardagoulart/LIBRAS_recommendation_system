@@ -25,7 +25,7 @@ class Playlist:
         first = self.distances_without_author[self.first]
         list_recomendation = []
         for i in range(0, 10):
-            value = max(first)
+            value = min(first)
             list_recomendation.append(self.file["nome_do_vídeo"][first.index(value)])
             new = self.distances[first.index(value)]
             first[first.index(value)] = -1
