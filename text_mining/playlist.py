@@ -19,11 +19,17 @@ class Playlist:
             new = self.distances[first.index(value)]
             first[first.index(value)] = -1
             first = [first[j] + new[j] for j in range(0, len(new))]
+        file = open("com_autor.txt", 'w')
+        for i in list_recomendation:
+            file.write(i)
+            file.write('\n')
         print(list_recomendation)
         return list_recomendation
 
     def playlist_generator_without_author(self):
         first = self.distances_without_author[self.first]
+        print(first[0])
+
         list_recomendation = []
         for i in range(0, 10):
             value = min(first)
@@ -31,6 +37,11 @@ class Playlist:
             new = self.distances[first.index(value)]
             first[first.index(value)] = 100000000000000000000
             first = [first[j] + new[j] for j in range(0, len(new))]
+
+        file = open("sem_autor.txt", 'w')
+        for i in list_recomendation:
+            file.write(i)
+            file.write('\n')
         print(list_recomendation)
         return list_recomendation
 
@@ -42,4 +53,4 @@ if __name__ == '__main__':
         print("Argumento inválido para começar a playlist")
         exit(404)
 
-    Playlist(int(id_video)).playlist_generator_without_author()
+    Playlist(int(id_video)).playlist_generator_with_author()

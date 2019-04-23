@@ -96,13 +96,13 @@ def text_simillarities(id_text, n_text, features=features, text=corpus):
     refere-se ao texto analisado e a similaridade do texto analisado, respectivamente.
     """
     simillarity = [[cosine_similarity(features[id_text], feature), int(i)] for i, feature in enumerate(features)]
-    simillarity = np.array(sorted(simillarity, key=lambda sim: sim[0], reverse=True))
+    simillarity = np.array(simillarity)
     return [[text[y], simillarity[x, 0]] for x, y in enumerate(np.int0(simillarity[1:, 1]), 1)][:n_text]
 
 
-def matrix(corpus):
+def matrix():
 
-    simillarity = [[(s, t) for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
+    simillarity = [[[s, t] for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
                    range(1, len(corpus_clear))]
     mat = []
     simillarity_file = open('text_mining/simillarity.csv', mode='w')
@@ -111,13 +111,16 @@ def matrix(corpus):
             mat.append([t,s])
 
     # print(m)
+    '''
     writer = csv.writer(simillarity_file)
     for i in simillarity:
         writer.writerow(i)
-        print(i)
+        '''
+
+    return simillarity
 
 
 
 
 
-matrix(corpus)
+matrix()
