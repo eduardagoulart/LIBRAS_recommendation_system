@@ -13,17 +13,33 @@ class Playlist:
     def playlist_generator_with_author(self):
         first = self.distances[self.first]
         list_recomendation = []
+        print(self.distances)
+        f = open("graph/graph_generetor.txt", "w")
+        ref = 0
+        for referential in self.distances:
+            ultimo = 0
+            for values in referential:
+                f.write(str(ref))
+                f.write(" ")
+                f.write(str(ultimo))
+                f.write(" ")
+                f.write(str(values))
+                f.write('\n')
+                ultimo += 1
+            ref += 1
+        f.close()
         for i in range(0, 10):
             value = max(first)
             list_recomendation.append(self.file["nome_do_vídeo"][first.index(value)])
             new = self.distances[first.index(value)]
+            # print(new)
             first[first.index(value)] = -1
             first = [first[j] + new[j] for j in range(0, len(new))]
         file = open("com_autor.txt", 'w')
         for i in list_recomendation:
             file.write(i)
             file.write('\n')
-        print(list_recomendation)
+        # print(list_recomendation)
         return list_recomendation
 
     def playlist_generator_without_author(self):
