@@ -2,11 +2,6 @@ import igraph
 import networkx as nx
 import matplotlib.pyplot as plt
 
-import plotly.plotly as py
-import plotly.graph_objs as go
-
-
-
 class GraphGenerator:
     @staticmethod
     def generate():
@@ -48,20 +43,6 @@ class GraphGenerator:
 
         plt.axis('off')
         plt.show()
-        
-    def teste(self):
-        G = nx.random_geometric_graph(200, 0.125)
-        pos = nx.get_node_attributes(G, 'pos')
-
-        dmin = 1
-        ncenter = 0
-        for n in pos:
-            x, y = pos[n]
-            d = (x - 0.5) ** 2 + (y - 0.5) ** 2
-            if d < dmin:
-                ncenter = n
-                dmin = d
-
 
 
 if __name__ == "__main__":
