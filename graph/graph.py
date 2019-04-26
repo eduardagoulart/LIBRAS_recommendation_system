@@ -10,26 +10,45 @@ import plotly.graph_objs as go
 class GraphGenerator:
     @staticmethod
     def generate():
-        initial_graph = nx.Graph()
+        G = nx.Graph()
         edges = nx.read_edgelist('graph/edges.txt')
+        # nx.read_weighted_edgelist()
         nodes = nx.read_adjlist('graph/nodes.txt')
         file = open('graph/weight.txt', 'r')
         file = file.read().split("\n")
-        file = [tuple(i.split(" ")) for i in file]
+        file = [i.split(" ") for i in file]
+        # print(file)
+        file.pop()
+        for adj in file:
+            G.add_edge(adj[0], adj[1], weight=float(adj[2]))
         weight = nx.read_weighted_edgelist('graph/weight.txt')
-
-        for i in range(0, len(file)):
-            try:
-                initial_graph.add_weighted_edges_from(file[i], file[i + 1])
-            except:
-                break
-        # initial_graph.add_edges_from(edges.edges)
-        initial_graph.add_nodes_from(nodes)
-        print(initial_graph.nodes())
-        # initial_graph.add_weighted_edges_from([file[60], file[116]])
-        nx.draw(initial_graph, with_labels=True)
+        # G.add_edges_from(edges.edges)
+        G.add_nodes_from(nodes)
+        # G.add_weighted_edges_from(weight.edges())
+        # print(G.edges())
+        nx.draw(G, with_labels=True)
         plt.draw()
 
+        elarge = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] > 0.5]
+        esmall = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] <= 0.5]
+
+        pos = nx.spring_layout(G)  # positions for all nodes
+
+        # nodes
+        nx.draw_networkx_nodes(G, pos, node_size=700)
+
+        # edges
+        nx.draw_networkx_edges(G, pos, edgelist=elarge,
+                               width=6)
+        nx.draw_networkx_edges(G, pos, edgelist=esmall,
+                               width=2, alpha=0.5, edge_color='b', style='dashed')
+
+        # labels
+        nx.draw_networkx_labels(G, pos, font_size=20, font_family='sans-serif')
+
+        plt.axis('off')
+        plt.show()
+        
     def teste(self):
         G = nx.random_geometric_graph(200, 0.125)
         pos = nx.get_node_attributes(G, 'pos')
