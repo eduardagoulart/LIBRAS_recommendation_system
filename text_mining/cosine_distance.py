@@ -18,13 +18,13 @@ class VideoDistance:
         likes = self.obj.likes_relative_views()
         deslikes = self.obj.deslikes_relative_views()
         comments = matrix()
-        return [[float(age[i]) - float(duration[i]) - float(view[i]) - float(likes[i]) - float(
-            deslikes[i] - float(comment[i][0])) for i in range(0, len(age))] for comment in comments]
+        return [[float(age[i]) + float(duration[i]) + float(view[i]) + float(likes[i]) + float(
+            deslikes[i] + float(comment[i])) for i in range(0, len(age))] for comment in comments]
 
     def adding_authors(self):
         authors = self.obj.author()
         sum_values = self.matrix_pre_process()
-        return [[abs(float(sum_values[j][i]) - authors[j][i]) for i in range(0, len(authors[j]))] for j in
+        return [[abs(float(sum_values[j][i]) + authors[j][i]) for i in range(0, len(authors[j]))] for j in
                 range(0, len(authors))]
 
     def normallize_sum_with_author(self):
@@ -51,4 +51,4 @@ if "__main__" == __name__:
     # v = [2, 3, 7, 8, 9, 6]
     v = [1, 2, 3, 4, 5, 7]
     # VideoDistance().cosine_distance(u, v)
-    VideoDistance().simillarity_without_author()
+    VideoDistance().simillarity_matrix()

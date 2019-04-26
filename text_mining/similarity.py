@@ -40,8 +40,6 @@ def clear_text(text):
     text = [word.lower() for word in text]
     text = [[re.sub(pattern, "", word) for word in words.split()] for words in text]
 
-    # text = [[word for word in words if len(word) > 1] for words in text]
-
     for words in range(1, len(text)):
         for word in range(len(text[words])):
             if text[words][word] in table:
@@ -102,15 +100,11 @@ def text_simillarities(id_text, n_text, features=features, text=corpus):
 
 def matrix():
 
-    simillarity = [[[s, t] for t, s in text_simillarities(id_text=leg, n_text=121)] for leg in
+    simillarity = [[s for t, s in text_simillarities(id_text=leg, n_text=122)] for leg in
                    range(1, len(corpus_clear))]
-    mat = []
+    print(simillarity)
     simillarity_file = open('text_mining/simillarity.csv', mode='w')
-    for leg in range(1, len(corpus_clear)):
-        for t, s in text_simillarities(id_text=leg, n_text=121):
-            mat.append([t,s])
 
-    # print(m)
     '''
     writer = csv.writer(simillarity_file)
     for i in simillarity:
