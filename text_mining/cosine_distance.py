@@ -29,10 +29,17 @@ class VideoDistance:
 
     def normallize_sum_with_author(self):
         matrix = self.adding_authors()
-        return [[value / max(internal_list) for value in internal_list] for internal_list in matrix]
+        matrix_max_value = [max(internal_list) for internal_list in matrix]
+        max_from_matrix = max(matrix_max_value)
+        return [[value / max_from_matrix for value in internal_list] for internal_list in matrix]
 
     def simillarity_matrix(self):
         original_matrix = self.normallize_sum_with_author()
+        f = open('text_mining/texto.txt', 'w')
+        for i in original_matrix:
+            f.write(str(i))
+            f.write('\n')
+        f.close()
         return [[self.cosine_distance(referential, list_value) for list_value in original_matrix] for referential in
                 original_matrix]
 
