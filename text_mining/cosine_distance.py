@@ -34,13 +34,22 @@ class VideoDistance:
         return [[value / max_from_matrix for value in internal_list] for internal_list in matrix]
 
     def simillarity_matrix(self):
-        original_matrix = self.normallize_sum_with_author()
-        f = open('text_mining/texto.txt', 'w')
+        # original_matrix = self.normallize_sum_with_author()
+        original_matrix = self.adding_authors()
+        f = open('text_mining/similaridade.txt', 'w')
         sim = [[self.cosine_distance(referential, list_value) for list_value in original_matrix] for referential in
-                original_matrix]
+               original_matrix]
+        print(sim)
+        matrix_max_value = [max(internal_list) for internal_list in sim]
+        # print(matrix_max_value)
+        max_from_matrix = max(matrix_max_value)
+        print(max_from_matrix)
+        sim = [[value / max_from_matrix for value in internal_list] for internal_list in sim]
+
         for i in sim:
             f.write(str(i))
             f.write('\n')
+
         f.close()
         return [[self.cosine_distance(referential, list_value) for list_value in original_matrix] for referential in
                 original_matrix]

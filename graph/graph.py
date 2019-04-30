@@ -20,10 +20,10 @@ class GraphGenerator:
         nx.draw(G, with_labels=True)
         plt.draw()
 
-        elarge = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] == 1]
+        elarge = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] < 0.3]
         print(elarge)
         print(len(elarge))
-        esmall = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] <= 0.9]
+        esmall = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] > 0.9]
 
         pos = nx.spring_layout(G)  # positions for all nodes
 
