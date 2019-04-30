@@ -102,7 +102,6 @@ def matrix():
 
     simillarity = [[s for t, s in text_simillarities(id_text=leg, n_text=122)] for leg in
                    range(1, len(corpus_clear))]
-    print(simillarity)
     simillarity_file = open('text_mining/simillarity.csv', mode='w')
 
     '''

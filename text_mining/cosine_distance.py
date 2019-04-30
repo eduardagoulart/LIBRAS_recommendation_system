@@ -36,7 +36,9 @@ class VideoDistance:
     def simillarity_matrix(self):
         original_matrix = self.normallize_sum_with_author()
         f = open('text_mining/texto.txt', 'w')
-        for i in original_matrix:
+        sim = [[self.cosine_distance(referential, list_value) for list_value in original_matrix] for referential in
+                original_matrix]
+        for i in sim:
             f.write(str(i))
             f.write('\n')
         f.close()

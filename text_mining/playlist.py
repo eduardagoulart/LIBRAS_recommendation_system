@@ -12,6 +12,13 @@ class Playlist:
 
     def playlist_generator_with_author(self):
         first = self.distances[self.first]
+        f = open('text_mining/distances.txt', 'w')
+        for i in first:
+            f.write(str(i))
+            f.write('\n')
+
+        f.close()
+
         list_recomendation = []
 
         nodes = open("graph/nodes.txt", "w")
