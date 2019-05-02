@@ -5,41 +5,21 @@ import matplotlib.pyplot as plt
 class GraphGenerator:
     @staticmethod
     def generate():
-        G = nx.Graph()
+        import matplotlib.pyplot as plt
+        import networkx as nx
+
+        G = nx.Graph()  # 5x5 grid
         nodes = nx.read_adjlist('graph/nodes.txt')
         file = open('graph/weight.txt', 'r')
         file = file.read().split("\n")
         file = [i.split(" ") for i in file]
         file.pop()
-        for adj in file:
-            G.add_edge(adj[0], adj[1], weight=float(adj[2]))
-
         G.add_nodes_from(nodes)
 
+        for adj in file:
+            if float(adj[2]) >= 1:
+                G.add_edge(adj[0], adj[1], weight=float(adj[2]))
         nx.draw(G, with_labels=True)
-        plt.draw()
-
-        elarge = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] >= 1.0]
-        print(elarge)
-        print(len(elarge))
-        # esmall = [(u, v) for (u, v, d) in G.edges(data=True) if d['weight'] > 0.9]
-        # pos = nx.get_node_attributes(G, 'pos')
-
-        pos = nx.spring_layout(G)  # positions for all nodes
-
-        # nodes
-        nx.draw_networkx_nodes(G, pos, node_size=10)
-
-        # edges
-        # nx.draw_networkx_edges(G, pos, edgelist=elarge,
-        #                        width=6, alpha=0.2, edge_color='a')
-        # nx.draw_networkx_edges(G, pos, edgelist=esmall,
-        #                        width=1, alpha=0.2, edge_color='b', style='dashed')
-
-        # labels
-        nx.draw_networkx_labels(G, pos, font_size=18, font_family='sans-serif')
-
-        plt.axis('off')
         plt.show()
 
 
