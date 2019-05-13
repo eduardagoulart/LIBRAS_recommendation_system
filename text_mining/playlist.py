@@ -1,6 +1,7 @@
 from cosine_distance import VideoDistance
 import sys
 import pandas as pd
+import csv
 
 
 class Playlist:
@@ -18,8 +19,23 @@ class Playlist:
             f.write('\n')
 
         f.close()
+        d = {}
+        i = 0
+        j = 0
+        video = []
+        for referential in self.distances:
+            for values in referential:
+                d['a'] = {j, values}
+                j += 1
+            i += 1
 
         list_recomendation = []
+
+        with open("graph/datas.csv", mode='w') as csv_file:
+            fieldnames = ["node1", "node2", "weigh"]
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerow(d)
 
         nodes = open("graph/nodes.txt", "w")
         weight = open("graph/weight.txt", "w")
@@ -44,14 +60,12 @@ class Playlist:
             value = max(first)
             list_recomendation.append(self.file["nome_do_vídeo"][first.index(value)])
             new = self.distances[first.index(value)]
-            # print(new)
             first[first.index(value)] = -1
             first = [first[j] + new[j] for j in range(0, len(new))]
         file = open("com_autor.txt", 'w')
         for i in list_recomendation:
             file.write(i)
             file.write('\n')
-        # print(list_recomendation)
         return list_recomendation
 
     def playlist_generator_without_author(self):

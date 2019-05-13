@@ -15,11 +15,15 @@ class GraphGenerator:
         file = [i.split(" ") for i in file]
         file.pop()
         G.add_nodes_from(nodes)
+        count =0
 
         for adj in file:
-            if float(adj[2]) >= 0.9:
+            if float(adj[2]) >= 0.9 and adj[0] != adj[1]:
                 G.add_edge(adj[0], adj[1], weight=float(adj[2]))
                 print(f'adj[0]: {adj[0]}, adj[1]: {adj[1]}')
+                count += 1
+        nx.readwrite.gml.write_gml(G, 'graph/teste.gml')
+        print(count)
         nx.draw(G, with_labels=True)
         plt.show()
 
