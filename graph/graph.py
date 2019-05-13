@@ -17,8 +17,9 @@ class GraphGenerator:
         G.add_nodes_from(nodes)
 
         for adj in file:
-            if float(adj[2]) >= 1:
+            if float(adj[2]) >= 0.9:
                 G.add_edge(adj[0], adj[1], weight=float(adj[2]))
+                print(f'adj[0]: {adj[0]}, adj[1]: {adj[1]}')
         nx.draw(G, with_labels=True)
         plt.show()
 
