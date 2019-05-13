@@ -19,23 +19,8 @@ class Playlist:
             f.write('\n')
 
         f.close()
-        d = {}
-        i = 0
-        j = 0
-        video = []
-        for referential in self.distances:
-            for values in referential:
-                d['a'] = {j, values}
-                j += 1
-            i += 1
 
         list_recomendation = []
-
-        with open("graph/datas.csv", mode='w') as csv_file:
-            fieldnames = ["node1", "node2", "weigh"]
-            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-            writer.writeheader()
-            writer.writerow(d)
 
         nodes = open("graph/nodes.txt", "w")
         weight = open("graph/weight.txt", "w")
@@ -91,8 +76,8 @@ class Playlist:
 if __name__ == '__main__':
     try:
         id_video = sys.argv[1]
+        Playlist(int(id_video)).playlist_generator_with_author()
     except:
         print("Argumento inválido para começar a playlist")
         exit(404)
 
-    Playlist(int(id_video)).playlist_generator_with_author()
