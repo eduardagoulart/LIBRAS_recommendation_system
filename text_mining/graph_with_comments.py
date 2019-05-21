@@ -52,8 +52,6 @@ class GraphGenerator:
 
     def using_igraph(self):
         import igraph
-        graph = igraph.Graph()
-        graph.add_vertices(range(0, 121))
 
         file = open('text_mining/weight.txt', 'r')
         file = file.read().split("\n")
@@ -62,26 +60,26 @@ class GraphGenerator:
 
         adj_list = [sorted([int(adj[0]), int(adj[1])]) for adj in file if float(adj[2]) >= 0.9 and adj[0] != adj[1]]
         adj_list = self.remove_repetidos(adj_list)
+        graph = igraph.Graph(vertex_attrs={"label": range(0, 121)}, edges=adj_list)
+        print(graph)
         graph.add_edges(adj_list)
 
         graph.community_multilevel(weights=None, return_levels=True)
         self.plot_(graph)
 
-    def plot_(self, graph, filename="social_network.png"):
+    def plot_(self, graph, filename="text_mining/social_network.png"):
         from igraph import plot
-        layout = graph.layout("circle")
+        layout = graph.layout("graphopt")
         visual_style = dict()
         visual_style["vertex_size"] = 20
         visual_style["vertex_label_size"] = 30
         visual_style["vertex_label_dist"] = 2
         visual_style["vertex_color"] = "white"
         visual_style["vertex_label_color"] = "blue"
-        visual_style["vertex_label"] = graph.vs["name"]
         visual_style["edge_width"] = 2
         visual_style["layout"] = layout
         visual_style["bbox"] = (1200, 1000)
         visual_style["margin"] = 100
-        print(visual_style)
         plot(graph, filename, **visual_style)
 
 
