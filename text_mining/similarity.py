@@ -99,21 +99,32 @@ def text_simillarities(id_text, n_text, features=features, text=corpus):
 
 
 def matrix():
-
     simillarity = [[s for t, s in text_simillarities(id_text=leg, n_text=122)] for leg in
                    range(1, len(corpus_clear))]
-    simillarity_file = open('text_mining/simillarity.csv', mode='w')
+    # simillarity_file = open('text_mining/simillarity.csv', mode='w')
 
-    '''
-    writer = csv.writer(simillarity_file)
-    for i in simillarity:
-        writer.writerow(i)
-        '''
+    # writer = csv.writer(simillarity_file)
+    # for i in simillarity:
+    #     writer.writerow(i)
 
     return simillarity
 
 
+def wirte_file():
+    weight = open("text_mining/weight.txt", "w")
+    matrix_sim = matrix()
+    ref = 0
+    for referential in matrix_sim:
+        ultimo = 0
+        for values in referential:
+            weight.write(str(ref))
+            weight.write(" ")
+            weight.write(str(ultimo))
+            weight.write(" ")
+            weight.write(str(values))
+            weight.write('\n')
+            ultimo += 1
+        ref += 1
 
 
-
-matrix()
+wirte_file()
