@@ -28,14 +28,15 @@ class GraphGenerator:
 
         graph.add_edges(adj_list)
 
-        graph.community_multilevel(weights=None, return_levels=True)
-        self.plot_(graph)
+        member = graph.community_multilevel(weights=None, return_levels=False)
+        print(member)
+        igraph.plot(member)
+        # self.plot_(member)
         graph.write_ncol("text_mining/graph.ncol")
         graph.write_gml('text_mining/graph.gml')
 
-    def plot_(self, graph, filename="text_mining/social_network.png"):
+    def plot_(self, graph, filename="text_mining/libras.png"):
         from igraph import plot
-        layout = graph.layout("fruchterman_reingold")
         graph.vs["label"] = graph.vs["name"]
         visual_style = dict()
         visual_style["vertex_size"] = 20
