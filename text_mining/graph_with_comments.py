@@ -31,10 +31,10 @@ class PlotResults:
 
         member = graph.community_multilevel(weights=None, return_levels=False)
         print(member)
-        igraph.plot(member, **visual_style)
+        igraph.plot(member, 'text_mining/graph.png', **visual_style)
         # self.plot_(member)
-        graph.write_ncol("text_mining/graph.ncol")
-        graph.write_gml('text_mining/graph.gml')
+        # graph.write_ncol("text_mining/graph.ncol")
+        # graph.write_gml('text_mining/graph.gml')
 
 
 if __name__ == "__main__":
