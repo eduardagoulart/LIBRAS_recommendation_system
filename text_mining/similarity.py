@@ -46,7 +46,8 @@ def clear_text(text):
                 text[words][word] = re.sub(text[words][word], table[text[words][word]], text[words][word])
 
     text = [[word for word in words if word not in stopwords] for words in text]
-
+    text = [[word.split("\\n") for word in words] for words in text]
+    text = [[word for list_elem in words for word in list_elem if word != ""] for words in text]
     text = [[word for word in words if len(word) > 1] for words in text]
     text = [' '.join(words) for words in text]
     return np.array(text)
@@ -76,8 +77,8 @@ def fit_transform(text, words=vocabulary):
     todas as palavras contém ou não em cada texto.
     Insere 1 se sim e 0 se não.
     """
-    # return [1 if word in text.split() else 0 for word in words]
-    return [int(word in text.split()) for word in words]
+    return [1 if word in text.split() else 0 for word in words]
+    # return [int(word in text.split()) for word in words]
 
 
 features = np.array(list(map(fit_transform, corpus_clear)))
@@ -101,6 +102,7 @@ def text_simillarities(id_text, n_text, features=features, text=corpus):
 def matrix():
     simillarity = [[s for t, s in text_simillarities(id_text=leg, n_text=122)] for leg in
                    range(1, len(corpus_clear))]
+    print(simillarity)
     # simillarity_file = open('text_mining/simillarity.csv', mode='w')
 
     # writer = csv.writer(simillarity_file)
